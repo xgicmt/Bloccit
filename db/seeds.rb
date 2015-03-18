@@ -13,8 +13,8 @@ end
 
 
 #Create Posts
-Post.create!(title:"Custom Title", body:"Made by a human")
-create_original_post("Custom Title", "Made by a human")
+#Post.create!(title:"Custom Title", body:"Made by a human")
+#create_original_post("Custom Title", "Made by a human")
 
   50.times do
     
