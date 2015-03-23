@@ -10,6 +10,7 @@ source 'https://rubygems.org'
   end
 
   group :development do
+    gem 'quiet_assets'
     gem 'sqlite3'
   end
   # Use SCSS for stylesheets
