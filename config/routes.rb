@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
-  
+
   devise_for :users
-  resources :posts
   
-  authenticated :user do
-    root to: 'posts#index', as: :authenticated_root
+  resources :topics do
+    resources :posts, except: [:index]
   end
   
+  authenticated :user do
+    root to: 'topics#index', as: :authenticated_root
+  end
   
   get 'about' => 'welcome#about'
   #This changes the default home page
