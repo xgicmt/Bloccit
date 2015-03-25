@@ -11,6 +11,8 @@ source 'https://rubygems.org'
 
   group :development do
     gem 'quiet_assets'
+    ##ON THE MAC ONLY 
+    #gem 'rails-erd'
     gem 'sqlite3'
   end
   # Use SCSS for stylesheets
