@@ -3,6 +3,9 @@ class PostsController < ApplicationController
   def show
     @topic = Topic.find(params[:topic_id])
     @post = Post.find(params[:id])
+    def markdown_title
+      markdown_to_html(@post.title)
+    end
   end
 
   def new
@@ -49,4 +52,5 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:title, :body)
   end
+
 end
