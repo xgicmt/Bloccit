@@ -15,10 +15,12 @@
   </div>
 <p><%= @post.body %></p>
 <div class="col-md-8">
+<% if policy(@comment).new %>
 <h3>Add Your Own Comment</h3>
 <%= render @comments  %>
 </div>
   <div class="col-md-8">
       <%= render partial: 'comments/form', locals: { topic: @topic, post: @post, comment: @comment } %>
   </div>
+  <% end %>
 </div>
