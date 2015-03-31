@@ -14,6 +14,8 @@ source 'https://rubygems.org'
     ##ON THE MAC ONLY 
     #gem 'rails-erd'
     gem 'sqlite3'
+    gem 'binding_of_caller'
+    gem 'better_errors'
   end
   # Use SCSS for stylesheets
   gem 'sass-rails', '~> 5.0'

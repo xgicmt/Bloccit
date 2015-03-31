@@ -10,4 +10,7 @@ validates :body, length: {minimum: 20 }, presence: true
 validates :topic, presence: true
 validates :user, presence: true
 
+ # def self.paginate(per_page: 10, page: 0)
+  #  limit(per_page).offset(page * per_page)
+  #end
 end
