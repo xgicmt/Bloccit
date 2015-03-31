@@ -1,5 +1,4 @@
-<h4>Add a comment</h4>
-    <%= form_for [topic, post, comment] do |f| %>
+ <%= form_for [topic, post, comment] do |f| %>
       <% if comment.errors.any? %>
         <div class="alert alert-danger">
           <h4>There are <%= pluralize(comment.errors.count, "error") %>.</h4>
@@ -11,7 +10,6 @@
          </div>
          <% end %>
        <%= form_group_tag(comment.errors[:body]) do %>
-       <%= f.label "Comment" %>
        <%= f.text_field :body, class: 'form-control', placeholder: "Comment Here" %>
        <% end %>
        <div class="form-group">
