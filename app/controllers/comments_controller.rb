@@ -6,22 +6,20 @@ class CommentsController < ApplicationController
     @comments = @post.comments
     @comment = current_user.comments.build(comment_params)
     @comment.post = @post
-    #@comment = current_user.comments.new(comment_params)
-    #@post = Post.find(params[:post_id])
-    #@new_comment = Comment.new
+
     if @comment.save
       flash[:notice] = "Comment was saved."
       redirect_to [@topic, @post]
     else
       flash[:error] = "Comment did not save"
-      render 'post/show'
+      redirect_to [@topic, @post]
     end
   end
 
 private
 
 def comment_params
-  params.require(:comment).permit(:body, :post_id)
+  params.require(:comment).permit(:body, :post_id, :user_id)
 end
 
 
