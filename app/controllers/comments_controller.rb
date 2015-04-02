@@ -1,9 +1,13 @@
 class CommentsController < ApplicationController
  
   def create
-    @topic = Topic.find(params[:topic_id])
-    @post = @topic.posts.find(params[:post_id])
-    @comments = @post.comments
+    @post = Post.find(params[:post_id])
+    @topic = @post.topic
+   # @topic = Topic.find(params[:topic_id])
+   # @post = @topic.posts.find(params[:post_id])
+    ###############DELETED THIS TO SEE IF IT WAS NEEDED   ####################
+    #@comments = @post.comments
+    ###############IT DOES NOT SEEM TO BE   ########################
     @comment = current_user.comments.build(comment_params)
     @comment.post = @post
     #@comment = current_user.comments.new(comment_params)
@@ -12,9 +16,27 @@ class CommentsController < ApplicationController
     if @comment.save
       flash[:notice] = "Comment was saved."
       redirect_to [@topic, @post]
+
     else
       flash[:error] = "Comment did not save"
-      render 'post/show'
+      redirect_to [@topic, @post]
+    end
+  end
+
+  def destroy
+    #@topic = Topic.find(params[:topic_id])
+    @post = Post.find(params[:post_id])
+    @topic = @post.topic
+    @comment = @post.comments.find(params[:id])
+
+    authorize @comment
+
+    if @comment.destroy
+      flash[:notice] = "Comment was removed."
+      redirect_to [@topic, @post]
+    else
+      flash[:error] = "Comment could not be deleted, Please try again."
+      redirect_to [@topic, @post]
     end
   end
 
