@@ -66,8 +66,15 @@ ActiveRecord::Base.transaction do
       user.votes.create(value: 1, post: self)
     end
   end
+ActiveRecord::Base.transaction do
+      post2 = Post.create(title: 'Whatever', body: 'Post bodies must be pretty long.')
+      user.votes.create(value: 1, post: self)
+end
+ActiveRecord::Base.transaction do
+      post3 = Post.create(title: 'Whatever', body: 'Post bodies must be pretty long.')
+      user.votes.create(value: 1, post: self)
+end
 
-  
   private 
   
   def post_params
