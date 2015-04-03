@@ -60,7 +60,14 @@ class PostsController < ApplicationController
         render :show
       end
     end
+ActiveRecord::Base.transaction do
+    def save_with_initial_vote
+      post = Post.create(title: 'Whatever', body: 'Post bodies must be pretty long.')
+      user.votes.create(value: 1, post: self)
+    end
+  end
 
+  
   private 
   
   def post_params
