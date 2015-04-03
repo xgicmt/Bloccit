@@ -1,4 +1,5 @@
 class Post < ActiveRecord::Base
+
   has_many :comments, dependent: :destroy
   has_many :votes, dependent: :destroy
   belongs_to :user
@@ -28,5 +29,14 @@ validates :body, length: {minimum: 20 }, presence: true
 
     update_attribute(:rank, new_rank)
   end
+
+  after_create :create_vote
+
+  private
+
+  def create_vote
+    user.votes.create(value: 1, post: self)
+  end
+
 
 end
