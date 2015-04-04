@@ -18,9 +18,9 @@ Rails.application.routes.draw do
   end
 
 
-  authenticated :user do
-    root to: 'topics#index', as: :authenticated_root
-  end
+#  authenticated :user do
+#    root to: 'topics#index', as: :authenticated_root
+#  end
   
   get 'about' => 'welcome#about'
   #This changes the default home page
