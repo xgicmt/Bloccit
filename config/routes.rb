@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   #get 'comments/create'
 
   devise_for :users
-  resources :users, only: [:update]
+  resources :users, only: [:update, :show]
  
   resources :topics do 
     resources :posts, except: [:index]
@@ -18,9 +18,9 @@ Rails.application.routes.draw do
   end
 
 
-#  authenticated :user do
-#    root to: 'topics#index', as: :authenticated_root
-#  end
+  authenticated :user do
+    root to: 'topics#index', as: :authenticated_root
+  end
   
   get 'about' => 'welcome#about'
   #This changes the default home page
