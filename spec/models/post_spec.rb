@@ -1,14 +1,11 @@
 require 'rails_helper'
 
 describe Post do 
-		include TestFactories
 	describe 'vote methods' do
 
 	before do
-		 # @post = Post.new(title: 'Post title', body: 'Post bodies must be pretty long.')
-		   #allow(@post).to receive(:create_vote)
-		 # @post.save
-	   @post = associated_post
+      		#@user = create(:user)
+      		@post = create(:post)#, user: @user)
 		3.times { @post.votes.create(value: 1)}
 		2.times { @post.votes.create(value: -1)}
 	end
@@ -33,7 +30,7 @@ describe Post do
   end
      describe '#create_cote' do
      	it "generates an up-cote when explicity called" do
-     		post = associated_post
+     		post = create(:post)
      		expect( post.up_votes ).to eq(0)
      		post.create_vote
      		expect( post.up_votes ).to eq(1)
