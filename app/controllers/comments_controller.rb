@@ -2,25 +2,25 @@ class CommentsController < ApplicationController
  
   def create
     @post = Post.find(params[:post_id])
-    @topic = @post.topic
-   # @topic = Topic.find(params[:topic_id])
-   # @post = @topic.posts.find(params[:post_id])
-    ###############DELETED THIS TO SEE IF IT WAS NEEDED   ####################
-    #@comments = @post.comments
-    ###############IT DOES NOT SEEM TO BE   ########################
+    @comments = @post.comments
+    
     @comment = current_user.comments.build(comment_params)
     @comment.post = @post
-    #@comment = current_user.comments.new(comment_params)
-    #@post = Post.find(params[:post_id])
-    #@new_comment = Comment.new
+    @new_comment = Comment.new
+
+    authorize @comment
+    
     if @comment.save
       flash[:notice] = "Comment was saved."
-      redirect_to [@topic, @post]
-
     else
       flash[:error] = "Comment did not save"
-      redirect_to [@topic, @post]
     end
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
+
   end
 
   def destroy
@@ -47,7 +47,7 @@ class CommentsController < ApplicationController
 private
 
 def comment_params
-  params.require(:comment).permit(:body, :post_id)
+  params.require(:comment).permit(:body)
 end
 
 
